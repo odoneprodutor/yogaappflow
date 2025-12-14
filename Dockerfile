@@ -10,14 +10,8 @@ RUN npm ci
 # Copy source code
 COPY . .
 
-# Build Arguments (Environment Variables injection for Vite)
-# Note: These must be provided during build time in DokPloy settings
-ARG VITE_SUPABASE_URL
-ARG VITE_SUPABASE_ANON_KEY
-
-# Set ENV from ARG so Vite can see them
-ENV VITE_SUPABASE_URL=$VITE_SUPABASE_URL
-ENV VITE_SUPABASE_ANON_KEY=$VITE_SUPABASE_ANON_KEY
+# Build Arguments removed to force reading from .env.production file
+# The .env.production file contains the keys and is copied via COPY . .
 
 # Build the application
 RUN npm run build
